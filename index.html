@@ -260,44 +260,44 @@ body {
 }
 .btn-ghost:hover { border-color: #fff; background: rgba(255,255,255,0.08); }
 
-/* ─── HERO FOOD PHOTOS ───────────────────────────────── */
-.hero-food-wrap {
+/* ─── HERO RIGHT (mascot + food photo) ──────────────── */
+.hero-right {
   flex-shrink: 0; position: relative;
   width: clamp(260px, 34vw, 460px);
-  height: clamp(280px, 42vw, 540px);
+  height: clamp(300px, 44vw, 540px);
 }
-.hero-food-photo {
-  position: absolute; border-radius: 22px; overflow: hidden;
-  box-shadow: 0 24px 64px rgba(0,0,0,0.7), 0 0 0 2px rgba(255,255,255,0.07);
+.mascot-wrap {
+  position: absolute; right: 0; top: 0;
+  width: 76%; z-index: 1;
 }
-.hero-food-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.hero-food-back-l {
-  width: 72%; aspect-ratio: 1;
-  left: 0; top: 5%; transform: rotate(-10deg);
-  z-index: 1; filter: brightness(0.78) saturate(0.85);
+.mascot-img {
+  width: 100%; height: auto;
+  clip-path: circle(41% at 54% 51%);
+  animation: float 3.8s ease-in-out infinite;
+  filter: drop-shadow(0 20px 48px rgba(0,0,0,0.5));
 }
-.hero-food-back-r {
-  width: 66%; aspect-ratio: 1;
-  right: 0; bottom: 3%; transform: rotate(9deg);
-  z-index: 1; filter: brightness(0.78) saturate(0.85);
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  50%       { transform: translateY(-14px) rotate(1deg); }
 }
-.hero-food-front {
-  width: 80%; aspect-ratio: 1;
-  left: 50%; top: 50%;
-  transform: translate(-50%, -50%) rotate(-3deg);
-  z-index: 2;
-  animation: food-float 4.2s ease-in-out infinite;
-  box-shadow: 0 32px 80px rgba(0,0,0,0.85), 0 0 0 3px rgba(255,255,255,0.12),
-              0 0 0 7px rgba(255,91,31,0.18);
+.hero-food-card {
+  position: absolute; left: 0; bottom: 8%;
+  width: 52%; aspect-ratio: 1;
+  border-radius: 20px; overflow: hidden; z-index: 2;
+  animation: food-float 4.8s ease-in-out infinite;
+  box-shadow: 0 28px 72px rgba(0,0,0,0.82),
+              0 0 0 3px rgba(255,255,255,0.12),
+              0 0 0 8px rgba(255,91,31,0.18);
 }
+.hero-food-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
 @keyframes food-float {
-  0%, 100% { transform: translate(-50%, -50%) rotate(-3deg) translateY(0); }
-  50%       { transform: translate(-50%, -50%) rotate(-3deg) translateY(-14px); }
+  0%, 100% { transform: rotate(-6deg) translateY(0); }
+  50%       { transform: rotate(-6deg) translateY(10px); }
 }
 @media (max-width: 768px) {
-  .hero-food-wrap {
-    width: clamp(200px, 72vw, 300px);
-    height: clamp(200px, 72vw, 300px);
+  .hero-right {
+    width: clamp(200px, 72vw, 320px);
+    height: clamp(220px, 75vw, 380px);
   }
 }
 
@@ -768,16 +768,13 @@ footer { background: var(--dark); border-top: 1px solid rgba(255,255,255,0.06); 
       </div>
     </div>
 
-    <!-- FOOD PHOTOS -->
-    <div class="hero-food-wrap reveal reveal-delay-2">
-      <div class="hero-food-photo hero-food-back-l">
-        <img src="brand-assets/pic1 (1).png" alt="Makloub Hey Bro">
+    <!-- MASCOT + FOOD PHOTO -->
+    <div class="hero-right reveal reveal-delay-2">
+      <div class="mascot-wrap">
+        <img src="brand-assets/LOGO.svg" alt="Hey Bro Mascot" class="mascot-img">
       </div>
-      <div class="hero-food-photo hero-food-back-r">
+      <div class="hero-food-card">
         <img src="brand-assets/pic3.png" alt="Makloub Hey Bro">
-      </div>
-      <div class="hero-food-photo hero-food-front">
-        <img src="brand-assets/pic2.png" alt="Makloub Hey Bro">
       </div>
     </div>
   </div>
@@ -791,10 +788,6 @@ footer { background: var(--dark); border-top: 1px solid rgba(255,255,255,0.06); 
     <div class="hero-stat">
       <span class="stat-num">Torchi</span>
       <span class="stat-label">Awards 2025</span>
-    </div>
-    <div class="hero-stat">
-      <span class="stat-num">Glovo</span>
-      <span class="stat-label">Livraison à domicile</span>
     </div>
     <div class="hero-stat">
       <span class="stat-num">Tunis</span>
