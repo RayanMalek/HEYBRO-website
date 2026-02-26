@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hey Bro! — Le Temple du Makloub Légendaire</title>
+<link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Lilita+One&family=Fredoka+One&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --blue:       #1836E8;
+  --blue-dark:  #0F23B8;
+  --pink:       #FF5EC4;
+  --orange:     #FF5B1F;
+  --red:        #CC1C1C;
+  --white:      #FFFFFF;
+  --grey:       #A0A8BF;
+  --dark:       #07080f;
+  --dark2:      #0d0f22;
+  --dark3:      #14172a;
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--dark);
+  color: #fff;
+  overflow-x: hidden;
+}
+
+/* ─── CHECKER UTILITIES ─────────────────────────────── */
+.cb-blue-grey  { background: repeating-conic-gradient(#1836E8 0% 25%, #A0A8BF 0% 50%) 0 0 / 52px 52px; }
+.cb-blue-white { background: repeating-conic-gradient(#1836E8 0% 25%, #ffffff 0% 50%) 0 0 / 52px 52px; }
+.cb-pink-white { background: repeating-conic-gradient(#FF5EC4 0% 25%, #ffffff 0% 50%) 0 0 / 52px 52px; }
+.band     { height: 56px; }
+.band-sm  { height: 36px; }
+.stripe-o { height: 9px; background: var(--orange); }
+.stripe-r { height: 9px; background: var(--red); }
+
+/* ─── NAV ──────────────────────────────────────────── */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(7,8,15,0.82);
+  backdrop-filter: blur(18px) saturate(1.6);
+  -webkit-backdrop-filter: blur(18px) saturate(1.6);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  transition: background 0.3s, border-color 0.3s;
+}
+.nav-inner {
+  max-width: 1280px; margin: 0 auto;
+  padding: 0 40px;
+  height: 68px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo {
+  display: flex; align-items: center; text-decoration: none; flex-shrink: 0;
+}
+.nav-logo-img {
+  height: 46px; width: auto; border-radius: 8px;
+  transition: transform 0.18s, box-shadow 0.18s;
+}
+.nav-logo:hover .nav-logo-img {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(24,54,232,0.5);
+}
+.nav-links {
+  display: flex; align-items: center; gap: 4px;
+  list-style: none;
+}
+.nav-links a {
+  font-family: 'Fredoka One', cursive;
+  font-size: 15px; color: rgba(255,255,255,0.72);
+  text-decoration: none; padding: 8px 14px; border-radius: 8px;
+  transition: color 0.2s, background 0.2s;
+  white-space: nowrap;
+}
+.nav-links a:hover { color: #fff; background: rgba(255,255,255,0.08); }
+.nav-links a:active { background: rgba(255,255,255,0.14); }
+.nav-cta {
+  background: var(--orange) !important; color: #fff !important;
+  padding: 9px 22px !important; border-radius: 30px !important;
+  box-shadow: 0 4px 18px rgba(255,91,31,0.38);
+  transition: transform 0.18s cubic-bezier(.34,1.56,.64,1),
+              box-shadow 0.18s !important;
+}
+.nav-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(255,91,31,0.52) !important;
+  background: var(--orange) !important;
+}
+.nav-cta:active { transform: translateY(0); }
+
+/* Mobile bottom tab bar */
+.mobile-nav {
+  display: none;
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(7,8,15,0.97);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+.mobile-tabs {
+  display: flex; align-items: stretch;
+}
+.mobile-tab {
+  flex: 1; display: flex; flex-direction: column; align-items: center;
+  justify-content: center; gap: 4px; padding: 10px 4px 12px;
+  text-decoration: none; color: rgba(255,255,255,0.45);
+  font-family: 'Fredoka One', cursive; font-size: 9px;
+  letter-spacing: 0.5px; text-transform: uppercase;
+  transition: color 0.2s;
+  position: relative;
+}
+.mobile-tab:hover, .mobile-tab.active { color: #fff; }
+.mobile-tab.active::before {
+  content: '';
+  position: absolute; top: 0; left: 20%; right: 20%; height: 2.5px;
+  background: var(--orange); border-radius: 0 0 4px 4px;
+}
+.mobile-tab svg { width: 20px; height: 20px; }
+.mobile-tab.cta-tab {
+  background: var(--orange); color: #fff !important;
+  margin: 7px 5px; border-radius: 14px; padding: 8px 4px;
+  flex: 1.2;
+}
+.mobile-tab.cta-tab:hover { background: #e04e17; }
+.mobile-tab.cta-tab::before { display: none; }
+
+/* ─── HERO STATS STRIP ───────────────────────── */
+.hero-stats {
+  position: relative; z-index: 2;
+  background: rgba(0,0,0,0.32);
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding: 20px 40px;
+  display: flex; align-items: center; justify-content: center; gap: 0;
+}
+.hero-stat {
+  flex: 1; max-width: 220px;
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+  padding: 0 32px;
+}
+.hero-stat + .hero-stat { border-left: 1px solid rgba(255,255,255,0.12); }
+.stat-num {
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 22px; color: var(--orange);
+  letter-spacing: 1px; line-height: 1;
+}
+.stat-label {
+  font-family: 'Fredoka One', cursive; font-size: 11px;
+  color: rgba(255,255,255,0.45);
+  text-transform: uppercase; letter-spacing: 1.5px;
+}
+@media (max-width: 520px) {
+  .hero-stats { gap: 0; padding: 14px 16px; }
+  .hero-stat { padding: 0 12px; max-width: none; }
+  .stat-num { font-size: 16px; }
+  .stat-label { font-size: 9px; }
+}
+
+/* ─── TOP FRAME ─────────────────────────────── */
+.top-frame { padding-top: 68px; }
+
+/* ─── HERO ──────────────────────────────────────────── */
+.hero {
+  background: var(--blue);
+  position: relative; overflow: hidden;
+  min-height: 86vh;
+  display: flex; flex-direction: column;
+}
+.hero-noise {
+  position: absolute; inset: 0; pointer-events: none; z-index: 1; opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+.hero-bg-checker {
+  position: absolute; right: -60px; top: -60px;
+  width: 500px; height: 500px; opacity: 0.08;
+  background: repeating-conic-gradient(#fff 0% 25%, transparent 0% 50%) 0 0 / 72px 72px;
+  transform: rotate(12deg); border-radius: 40px;
+  pointer-events: none; z-index: 1;
+}
+.hero-bg-circle {
+  position: absolute; left: -120px; bottom: -120px;
+  width: 480px; height: 480px; border-radius: 50%;
+  background: var(--blue-dark); opacity: 0.45;
+  pointer-events: none; z-index: 1;
+}
+.hero-inner {
+  flex: 1; position: relative; z-index: 2;
+  max-width: 1280px; margin: 0 auto; width: 100%;
+  padding: 72px 40px 64px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 48px;
+}
+.hero-left { max-width: 580px; }
+.hero-award-badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: rgba(0,0,0,0.28); border: 1px solid rgba(255,255,255,0.18);
+  padding: 8px 18px 8px 10px; border-radius: 40px;
+  margin-bottom: 36px;
+}
+.badge-dot {
+  width: 32px; height: 32px; background: var(--orange); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Luckiest Guy', cursive; font-size: 11px; color: #fff;
+  letter-spacing: 0.5px; flex-shrink: 0;
+}
+.badge-text {
+  font-family: 'Fredoka One', cursive; font-size: 13px;
+  color: rgba(255,255,255,0.82); letter-spacing: 0.3px;
+}
+.wordmark { margin-bottom: 28px; }
+.wordmark-logo {
+  width: clamp(180px, 30vw, 340px); height: auto;
+  border-radius: 14px;
+  filter: drop-shadow(0 8px 28px rgba(0,0,0,0.4));
+}
+.hero-sub {
+  font-family: 'Fredoka One', cursive;
+  font-size: clamp(15px, 2.2vw, 19px);
+  color: rgba(255,255,255,0.62);
+  margin-bottom: 14px; letter-spacing: 0.3px;
+}
+.hero-tagline {
+  background: rgba(0,0,0,0.22);
+  border-left: 5px solid var(--pink);
+  padding: 12px 20px;
+  font-size: 14px; font-style: italic; font-weight: 800;
+  border-radius: 0 10px 10px 0; color: rgba(255,255,255,0.78);
+  display: inline-block; margin-bottom: 36px;
+}
+.hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+.btn-primary {
+  background: var(--orange); color: #fff;
+  font-family: 'Fredoka One', cursive; font-size: 17px;
+  padding: 14px 32px; border-radius: 50px; border: none; cursor: pointer;
+  text-decoration: none; display: inline-block;
+  box-shadow: 0 6px 24px rgba(255,91,31,0.42), 0 2px 0 rgba(0,0,0,0.2) inset;
+  transition: transform 0.18s cubic-bezier(.34,1.56,.64,1), box-shadow 0.18s;
+}
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 36px rgba(255,91,31,0.55), 0 2px 0 rgba(0,0,0,0.2) inset;
+}
+.btn-primary:active { transform: translateY(0); }
+.btn-ghost {
+  background: transparent; color: #fff;
+  font-family: 'Fredoka One', cursive; font-size: 17px;
+  padding: 13px 30px; border-radius: 50px;
+  border: 2px solid rgba(255,255,255,0.35); cursor: pointer;
+  text-decoration: none; display: inline-block;
+  transition: border-color 0.18s, background 0.18s;
+}
+.btn-ghost:hover { border-color: #fff; background: rgba(255,255,255,0.08); }
+
+.mascot-wrap {
+  flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+}
+.mascot-img {
+  animation: float 3.8s ease-in-out infinite;
+  filter: drop-shadow(0 20px 48px rgba(0,0,0,0.5));
+  width: clamp(220px, 30vw, 340px);
+  height: auto;
+  /* clip to the blue circle in the SVG (center ~54% 51%, radius ~41%) */
+  clip-path: circle(41% at 54% 51%);
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  50%       { transform: translateY(-14px) rotate(1deg); }
+}
+
+/* ─── MARQUEE ────────────────────────────────────────── */
+.marquee-section { background: var(--pink); overflow: hidden; }
+.marquee-track {
+  display: flex; width: max-content;
+  animation: marquee 24s linear infinite;
+}
+.marquee-track:hover { animation-play-state: paused; }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.marquee-item {
+  display: flex; align-items: center; white-space: nowrap;
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 19px; letter-spacing: 3px;
+  color: #fff; padding: 14px 0;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.15);
+}
+.marquee-sep {
+  display: inline-block;
+  width: 9px; height: 9px; background: #fff;
+  border-radius: 50%; margin: 0 22px; opacity: 0.5;
+}
+
+/* ─── SECTION UTILITIES ──────────────────────────────── */
+.section { padding: 88px 40px; max-width: 1280px; margin: 0 auto; }
+.eyebrow {
+  font-family: 'Fredoka One', cursive; font-size: 12px;
+  letter-spacing: 3.5px; text-transform: uppercase; color: var(--pink);
+  margin-bottom: 10px; display: block;
+}
+.sec-title {
+  font-family: 'Luckiest Guy', cursive;
+  font-size: clamp(36px, 5vw, 58px);
+  letter-spacing: 2px; line-height: 1.05; margin-bottom: 48px;
+}
+
+/* ─── ABOUT ──────────────────────────────────────────── */
+.about-wrap { background: var(--dark2); }
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center;
+}
+.about-text p {
+  font-size: 16px; color: rgba(255,255,255,0.62); line-height: 1.85;
+  margin-bottom: 20px;
+}
+.about-text p strong { color: #fff; }
+.about-text p .hl { color: var(--orange); font-weight: 900; }
+.about-visual {
+  display: flex; align-items: center; justify-content: center;
+}
+.about-checker-box {
+  width: 100%; max-width: 360px; border-radius: 24px; overflow: hidden;
+  border: 3px solid rgba(255,255,255,0.1);
+  box-shadow: 0 24px 64px rgba(0,0,0,0.55), 0 0 0 1px rgba(24,54,232,0.3);
+}
+.about-checker-orange { height: 9px; background: var(--orange); }
+.about-checker-content {
+  background: var(--blue); padding: 40px 36px; text-align: center;
+}
+.about-checker-content .big-num {
+  font-family: 'Luckiest Guy', cursive; font-size: 80px; color: #fff;
+  -webkit-text-stroke: 4px var(--blue-dark);
+  text-shadow: 3px 3px 0 var(--blue-dark); line-height: 1;
+}
+.about-checker-content .big-label {
+  font-family: 'Fredoka One', cursive; font-size: 17px;
+  color: rgba(255,255,255,0.7); margin-top: 8px;
+}
+
+/* ─── MENU ───────────────────────────────────────────── */
+.menu-wrap { background: var(--dark); }
+.bestseller-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;
+  margin-bottom: 52px;
+}
+.bs-card {
+  background: var(--dark3); border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.07); overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+  transition: transform 0.22s cubic-bezier(.34,1.56,.64,1), box-shadow 0.22s;
+  display: flex; flex-direction: column;
+}
+.bs-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 52px rgba(0,0,0,0.55), 0 0 0 1px rgba(24,54,232,0.35);
+}
+.bs-card-accent { height: 6px; }
+.bs-card-accent.orange { background: var(--orange); }
+.bs-card-accent.blue   { background: var(--blue); }
+.bs-card-accent.pink   { background: var(--pink); }
+.bs-card-accent.red    { background: var(--red); }
+.bs-card-body { padding: 28px; flex: 1; display: flex; flex-direction: column; gap: 12px; }
+.bs-badge {
+  display: inline-block; font-family: 'Fredoka One', cursive;
+  font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 4px 12px; border-radius: 20px;
+  background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.5); width: fit-content;
+}
+.bs-badge.best  { background: rgba(255,91,31,0.2); color: var(--orange); }
+.bs-badge.sig   { background: rgba(24,54,232,0.25); color: #8fa4ff; }
+.bs-badge.crea  { background: rgba(255,94,196,0.18); color: var(--pink); }
+.bs-badge.spicy { background: rgba(204,28,28,0.18); color: var(--red); }
+.bs-name {
+  font-family: 'Fredoka One', cursive; font-size: 24px;
+  color: #fff; line-height: 1.2;
+}
+.bs-desc {
+  font-size: 13.5px; color: rgba(255,255,255,0.52); line-height: 1.7; flex: 1;
+}
+.bs-desc .harissa { color: var(--red); font-weight: 900; }
+.bs-price {
+  font-family: 'Luckiest Guy', cursive; font-size: 26px;
+  color: var(--orange); letter-spacing: 1px; margin-top: 8px;
+  padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.07);
+}
+.menu-cta-wrap { text-align: center; }
+.menu-full-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: transparent; border: 2px solid rgba(255,255,255,0.25);
+  color: rgba(255,255,255,0.85); font-family: 'Fredoka One', cursive;
+  font-size: 16px; padding: 16px 44px; border-radius: 50px;
+  text-decoration: none; letter-spacing: 0.5px;
+  transition: transform 0.2s, border-color 0.2s, color 0.2s, box-shadow 0.2s;
+}
+.menu-full-btn:hover {
+  transform: translateY(-2px); border-color: var(--orange);
+  color: var(--orange); box-shadow: 0 8px 28px rgba(255,91,31,0.25);
+}
+.menu-full-btn:active { transform: translateY(0); }
+
+/* ─── TORCHI AWARDS ──────────────────────────────────── */
+.awards-wrap { background: var(--blue); position: relative; overflow: hidden; }
+.awards-noise {
+  position: absolute; inset: 0; pointer-events: none; z-index: 0; opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+.awards-bg-checker {
+  position: absolute; left: -80px; bottom: -80px;
+  width: 440px; height: 440px; opacity: 0.08;
+  background: repeating-conic-gradient(#fff 0% 25%, transparent 0% 50%) 0 0 / 64px 64px;
+  transform: rotate(-8deg); border-radius: 40px; pointer-events: none; z-index: 0;
+}
+.awards-inner {
+  position: relative; z-index: 1;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+}
+.awards-left .eyebrow { color: var(--orange); }
+.awards-left .sec-title { color: #fff; margin-bottom: 24px; }
+.awards-desc {
+  font-size: 16px; color: rgba(255,255,255,0.68); line-height: 1.85; margin-bottom: 36px;
+}
+.awards-badge-row {
+  display: flex; align-items: center; gap: 16px;
+  background: rgba(0,0,0,0.25); border-radius: 18px;
+  padding: 20px 24px; border: 1px solid rgba(255,255,255,0.15);
+}
+.awards-badge-num {
+  font-family: 'Luckiest Guy', cursive; font-size: 56px; color: var(--orange);
+  text-shadow: 3px 3px 0 rgba(0,0,0,0.25); line-height: 1;
+}
+.awards-badge-label {
+  font-family: 'Fredoka One', cursive; font-size: 18px; color: #fff; margin-bottom: 4px;
+}
+.awards-badge-sub { font-size: 13px; color: rgba(255,255,255,0.52); }
+.awards-right { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.torchi-img {
+  width: 280px; height: auto;
+  filter: drop-shadow(0 16px 48px rgba(0,0,0,0.65)) drop-shadow(0 0 80px rgba(255,91,31,0.3));
+  animation: torchi-float 4s ease-in-out infinite;
+}
+@keyframes torchi-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+/* ─── ORDER ONLINE ───────────────────────────────────── */
+.order-wrap { background: var(--dark); padding: 80px 0; }
+.order-inner {
+  display: flex; align-items: center; gap: 64px;
+  background: linear-gradient(135deg, rgba(255,192,66,0.07) 0%, rgba(0,158,129,0.07) 100%);
+  border: 1px solid rgba(255,192,66,0.18);
+  border-radius: 28px; padding: 52px 56px;
+  position: relative; overflow: hidden;
+}
+.order-inner::before {
+  content: ''; position: absolute; top: -60px; right: -60px;
+  width: 260px; height: 260px;
+  background: radial-gradient(circle, rgba(255,192,66,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.order-logo {
+  width: 160px; height: auto; border-radius: 20px; flex-shrink: 0;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.5), 0 0 0 3px rgba(255,192,66,0.25);
+}
+.order-text { flex: 1; }
+.order-text .eyebrow { margin-bottom: 8px; }
+.order-text .sec-title { margin-bottom: 16px; font-size: clamp(32px, 4vw, 52px); }
+.order-text p {
+  font-family: 'Nunito', sans-serif; font-size: 16px; line-height: 1.7;
+  color: rgba(255,255,255,0.6); margin-bottom: 28px; max-width: 420px;
+}
+.glovo-btn {
+  display: inline-flex; align-items: center; gap: 12px;
+  background: #ffc042; color: #009e81;
+  font-family: 'Fredoka One', cursive; font-size: 17px; font-weight: 700;
+  padding: 15px 36px; border-radius: 50px; text-decoration: none;
+  box-shadow: 0 8px 28px rgba(255,192,66,0.35);
+  transition: transform 0.18s, box-shadow 0.18s;
+}
+.glovo-btn:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(255,192,66,0.55); }
+.glovo-btn img { height: 24px; width: auto; border-radius: 5px; }
+@media (max-width: 720px) {
+  .order-inner { flex-direction: column; gap: 32px; padding: 36px 28px; text-align: center; }
+  .order-logo { width: 120px; }
+  .order-text p { margin-left: auto; margin-right: auto; }
+}
+
+/* ─── INSTAGRAM ──────────────────────────────────────── */
+.instagram-wrap { background: var(--dark2); }
+.ig-header {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  margin-bottom: 48px; flex-wrap: wrap; gap: 20px;
+}
+.ig-handle {
+  font-family: 'Fredoka One', cursive; font-size: 18px;
+  color: rgba(255,255,255,0.4); letter-spacing: 1px; margin-top: 6px;
+}
+.ig-follow-btn {
+  display: inline-block; text-decoration: none;
+  background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+  color: #fff; font-family: 'Fredoka One', cursive; font-size: 15px;
+  padding: 11px 28px; border-radius: 50px;
+  transition: transform 0.18s, box-shadow 0.18s;
+  box-shadow: 0 6px 20px rgba(253,29,29,0.3);
+}
+.ig-follow-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(253,29,29,0.45); }
+.ig-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+}
+.ig-post {
+  border-radius: 18px; overflow: hidden;
+  aspect-ratio: 1 / 1; position: relative; cursor: pointer;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.4);
+}
+.ig-post-inner {
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column; overflow: hidden;
+}
+.ig-post-stripe-o { height: 8px; background: var(--orange); flex-shrink: 0; }
+.ig-post-stripe-r { height: 8px; background: var(--red); flex-shrink: 0; }
+.ig-post-cb { flex-shrink: 0; }
+.ig-post-content {
+  flex: 1; background: var(--blue);
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; padding: 12px; text-align: center;
+  position: relative; gap: 4px;
+}
+.ig-post-content.pink-bg { background: linear-gradient(135deg,#c231b4,#f5a0e0); }
+.ig-post-content.dark-bg { background: var(--dark3); }
+.ig-post-overlay {
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,0);
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.25s;
+}
+.ig-post:hover .ig-post-overlay { background: rgba(0,0,0,0.38); }
+.ig-post-overlay-text {
+  font-family: 'Fredoka One', cursive;
+  font-size: 13px; color: #fff; opacity: 0;
+  transition: opacity 0.25s; letter-spacing: 1px;
+}
+.ig-post:hover .ig-post-overlay-text { opacity: 1; }
+.ig-post-hey {
+  font-family: 'Lilita One', cursive;
+  font-size: clamp(22px, 4.5vw, 38px); color: var(--pink);
+  transform: skewX(-5deg); display: inline-block; line-height: 1;
+}
+.ig-post-bro {
+  font-family: 'Luckiest Guy', cursive;
+  font-size: clamp(28px, 5.5vw, 48px); color: #fff;
+  -webkit-text-stroke: 3px var(--blue-dark);
+  text-shadow: 2px 2px 0 var(--blue-dark);
+  letter-spacing: 2px; line-height: 1;
+}
+.ig-post-sub {
+  font-family: 'Fredoka One', cursive;
+  font-size: clamp(8px, 1.3vw, 12px); color: rgba(255,255,255,0.55);
+  margin-top: 4px;
+}
+.ig-post-label {
+  font-family: 'Luckiest Guy', cursive;
+  font-size: clamp(13px, 2.4vw, 22px); color: #fff;
+  -webkit-text-stroke: 1.5px var(--blue-dark);
+  text-shadow: 2px 2px 0 var(--blue-dark);
+  letter-spacing: 1px; line-height: 1.15;
+}
+
+/* ─── LOCATION ───────────────────────────────────────── */
+.location-wrap { background: var(--dark3); }
+.location-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start;
+}
+.location-cards { display: flex; flex-direction: column; gap: 20px; }
+.loc-card {
+  background: var(--dark2); border-radius: 18px;
+  padding: 24px 28px; border: 1px solid rgba(255,255,255,0.08);
+  display: flex; align-items: flex-start; gap: 20px;
+  transition: transform 0.2s, border-color 0.2s;
+}
+.loc-card:hover { transform: translateX(6px); border-color: rgba(24,54,232,0.5); }
+.loc-icon {
+  width: 44px; height: 44px; border-radius: 12px; background: var(--blue);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.loc-icon svg { width: 22px; height: 22px; color: #fff; }
+.loc-label {
+  font-family: 'Fredoka One', cursive; font-size: 11px;
+  letter-spacing: 2.5px; text-transform: uppercase;
+  color: rgba(255,255,255,0.38); margin-bottom: 5px;
+}
+.loc-value {
+  font-family: 'Nunito', sans-serif; font-weight: 800; font-size: 15px;
+  color: #fff; line-height: 1.55;
+}
+.location-map {
+  border-radius: 24px; overflow: hidden;
+  border: 3px solid rgba(255,255,255,0.08);
+  background: var(--dark2); height: 420px;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+}
+.map-cb-bottom { height: 40px; }
+.map-bottom { height: 9px; background: var(--red); }
+
+/* ─── FOOTER ─────────────────────────────────────────── */
+.footer-orange-bar { height: 4px; background: var(--orange); }
+footer { background: var(--dark); border-top: 1px solid rgba(255,255,255,0.06); }
+.footer-top {
+  max-width: 1280px; margin: 0 auto;
+  padding: 60px 40px 40px;
+  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 48px;
+}
+.footer-logo { display: inline-flex; align-items: center; text-decoration: none; margin-bottom: 20px; }
+.footer-logo-img { height: 80px; width: auto; border-radius: 12px; }
+.footer-tagline { font-size:13px; color:rgba(255,255,255,0.35); line-height:1.75; font-style:italic; }
+.footer-col-title {
+  font-family:'Fredoka One',cursive; font-size:11px; letter-spacing:3px;
+  text-transform:uppercase; color:rgba(255,255,255,0.32); margin-bottom:18px;
+}
+.footer-links { list-style:none; display:flex; flex-direction:column; gap:10px; }
+.footer-links a {
+  font-size:14px; color:rgba(255,255,255,0.52); text-decoration:none;
+  font-weight:700; transition:color 0.18s;
+}
+.footer-links a:hover { color:#fff; }
+.footer-bottom {
+  max-width:1280px; margin:0 auto;
+  padding:20px 40px 28px;
+  display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;
+  border-top:1px solid rgba(255,255,255,0.05);
+}
+.footer-copy { font-size:12px; color:rgba(255,255,255,0.22); line-height:1.7; }
+
+/* ─── SCROLL REVEAL ──────────────────────────────────── */
+.reveal {
+  opacity: 0; transform: translateY(32px);
+  transition: opacity 0.65s cubic-bezier(.25,.46,.45,.94),
+              transform 0.65s cubic-bezier(.25,.46,.45,.94);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.12s; }
+.reveal-delay-2 { transition-delay: 0.24s; }
+.reveal-delay-3 { transition-delay: 0.36s; }
+
+/* ─── RESPONSIVE ─────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .awards-inner { grid-template-columns: 1fr; }
+  .awards-right { align-items: flex-start; flex-direction: row; gap: 32px; }
+  .torchi-frame { max-width: 100%; flex-direction: row; gap: 32px; text-align: left; padding: 28px 32px; }
+  .torchi-img { width: 120px; }
+}
+@media (max-width: 860px) {
+  .about-grid { grid-template-columns: 1fr; gap: 44px; }
+  .location-grid { grid-template-columns: 1fr; }
+  .location-map { height: 300px; }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .mobile-nav { display: block; }
+  body { padding-bottom: 70px; }
+  .hero-inner { flex-direction: column; padding: 36px 24px 48px; gap: 28px; text-align: center; }
+  .wordmark { align-items: center; }
+  .hero-award-badge { margin-bottom: 28px; }
+  .hero-btns { justify-content: center; }
+  .mascot-wrap svg { width: 210px; }
+  .section { padding: 60px 24px; }
+  .ig-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .awards-right { flex-direction: column; }
+  .torchi-frame { flex-direction: column; align-items: center; text-align: center; padding: 32px; }
+  .torchi-img { width: 150px; }
+  .awards-badge-row { flex-direction: column; text-align: center; gap: 10px; }
+  .footer-top { grid-template-columns: 1fr; gap: 36px; padding: 44px 24px 28px; }
+  .footer-bottom { flex-direction: column; text-align: center; padding: 16px 24px 20px; }
+  .band { height: 40px; }
+}
+@media (max-width: 520px) {
+  .ig-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .ig-post:last-child { display: none; }
+  .hero-btns { flex-direction: column; align-items: stretch; }
+  .btn-primary, .btn-ghost { text-align: center; }
+  .menu-tabs { gap: 8px; }
+  .menu-tab-btn { font-size: 13px; padding: 8px 16px; }
+  .section { padding: 52px 20px; }
+  .nav-inner { padding: 0 20px; }
+  .footer-bottom { padding: 14px 20px 18px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════ DESKTOP NAV ═══════════ -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">
+      <img src="brand-assets/heybrologo.svg" alt="Hey BRO!" class="nav-logo-img">
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">Notre Histoire</a></li>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#awards">Palmarès</a></li>
+      <li><a href="#instagram">Instagram</a></li>
+      <li><a href="#location">Nous Trouver</a></li>
+      <li><a href="#order" class="nav-cta">Commander</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ═══════════ MOBILE BOTTOM TAB BAR ═══════════ -->
+<nav class="mobile-nav">
+  <div class="mobile-tabs">
+    <a href="#hero" class="mobile-tab active" onclick="setActiveTab(this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+      </svg>
+      Accueil
+    </a>
+    <a href="#menu" class="mobile-tab" onclick="setActiveTab(this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 002-2V2"/><path d="M7 2v20"/>
+        <path d="M21 15V2a5 5 0 00-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/>
+      </svg>
+      Menu
+    </a>
+    <a href="#order" class="mobile-tab cta-tab" onclick="setActiveTab(this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+        <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 001.95-1.56l1.65-7.44H6"/>
+      </svg>
+      Commander
+    </a>
+    <a href="#awards" class="mobile-tab" onclick="setActiveTab(this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 21h8m-4-4v4M3 8V3h18v5c0 4.97-3.58 9-8 9S3 12.97 3 8z"/>
+      </svg>
+      Awards
+    </a>
+    <a href="#location" class="mobile-tab" onclick="setActiveTab(this)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+      </svg>
+      Trouver
+    </a>
+  </div>
+</nav>
+
+<!-- ═══════════ TOP FRAME ═══════════ -->
+<div class="top-frame">
+  <div class="cb-blue-grey band"></div>
+  <div class="stripe-o"></div>
+</div>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero" id="hero">
+  <div class="hero-noise"></div>
+  <div class="hero-bg-checker"></div>
+  <div class="hero-bg-circle"></div>
+
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-award-badge reveal">
+        <div class="badge-dot">#1</div>
+        <div class="badge-text">Torchi Awards 2025 · Meilleur Makloub de Tunisie</div>
+      </div>
+      <div class="wordmark reveal reveal-delay-1">
+        <img src="brand-assets/heybrologo.svg" alt="Hey BRO!" class="wordmark-logo">
+      </div>
+      <div class="hero-sub reveal reveal-delay-2">Sandwicherie tunisienne · Tunis</div>
+      <div class="hero-tagline reveal reveal-delay-2">"La street l'a créé, Hey Bro l'a stylé."</div>
+      <div class="hero-btns reveal reveal-delay-3">
+        <a href="#menu" class="btn-primary">Voir le Menu</a>
+        <a href="#location" class="btn-ghost">Nous Trouver</a>
+      </div>
+    </div>
+
+    <!-- MASCOT — brand-assets/LOGO.svg -->
+    <div class="mascot-wrap reveal reveal-delay-2">
+      <img src="brand-assets/LOGO.svg" alt="Hey BRO! Mascot" class="mascot-img">
+    </div>
+  </div>
+
+  <!-- HERO STATS STRIP -->
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <span class="stat-num">#1</span>
+      <span class="stat-label">Meilleur Makloub</span>
+    </div>
+    <div class="hero-stat">
+      <span class="stat-num">Torchi</span>
+      <span class="stat-label">Awards 2025</span>
+    </div>
+    <div class="hero-stat">
+      <span class="stat-num">Glovo</span>
+      <span class="stat-label">Livraison à domicile</span>
+    </div>
+    <div class="hero-stat">
+      <span class="stat-num">Tunis</span>
+      <span class="stat-label">Tunisie</span>
+    </div>
+  </div>
+</section>
+
+<div class="stripe-o"></div>
+<div class="cb-blue-grey band"></div>
+
+<!-- ═══════════ MARQUEE ═══════════ -->
+<div class="marquee-section">
+  <div class="marquee-track">
+    <span class="marquee-item">HEY BRO<span class="marquee-sep"></span></span>
+    <span class="marquee-item">MAKLOUB LÉGENDAIRE<span class="marquee-sep"></span></span>
+    <span class="marquee-item">TUNISIE<span class="marquee-sep"></span></span>
+    <span class="marquee-item">#1 TORCHI AWARDS 2025<span class="marquee-sep"></span></span>
+    <span class="marquee-item">LA STREET L'A CRÉÉ<span class="marquee-sep"></span></span>
+    <span class="marquee-item">HEY BRO L'A STYLÉ<span class="marquee-sep"></span></span>
+    <span class="marquee-item">HEY BRO<span class="marquee-sep"></span></span>
+    <span class="marquee-item">MAKLOUB LÉGENDAIRE<span class="marquee-sep"></span></span>
+    <span class="marquee-item">TUNISIE<span class="marquee-sep"></span></span>
+    <span class="marquee-item">#1 TORCHI AWARDS 2025<span class="marquee-sep"></span></span>
+    <span class="marquee-item">LA STREET L'A CRÉÉ<span class="marquee-sep"></span></span>
+    <span class="marquee-item">HEY BRO L'A STYLÉ<span class="marquee-sep"></span></span>
+  </div>
+</div>
+
+<div class="cb-blue-grey band"></div>
+<div class="stripe-o"></div>
+
+<!-- ═══════════ ABOUT ═══════════ -->
+<section class="about-wrap" id="about">
+  <div class="section">
+    <div class="about-grid">
+      <div class="about-text">
+        <span class="eyebrow reveal">Notre Histoire</span>
+        <h2 class="sec-title reveal">Un Makloub<br>Différent.</h2>
+        <p class="reveal">
+          Hey Bro, c'est le sandwich tunisien <span class="hl">repensé de A à Z</span>.
+          Des ingrédients soigneusement choisis, des recettes travaillées, et une identité forte qui fait la différence.
+        </p>
+        <p class="reveal reveal-delay-1">
+          <strong>Le meilleur Makloub de Tunisie</strong>, validé par les Torchi Awards 2025.
+          Pas une promesse. Une récompense.
+        </p>
+      </div>
+      <div class="about-visual reveal reveal-delay-1">
+        <div class="about-checker-box">
+          <div class="cb-blue-grey" style="height:52px;"></div>
+          <div class="about-checker-orange"></div>
+          <div class="about-checker-content">
+            <div class="big-num">#1</div>
+            <div style="font-family:'Lilita One',cursive;font-size:44px;color:#FF5EC4;transform:skewX(-5deg);display:inline-block;line-height:1;">Hey</div>
+            <div style="font-family:'Luckiest Guy',cursive;font-size:58px;color:#fff;-webkit-text-stroke:4px #0F23B8;text-shadow:3px 3px 0 #0F23B8;letter-spacing:3px;line-height:1;">BRO!</div>
+            <div class="big-label">Makloub bel Tunisie</div>
+          </div>
+          <div class="about-checker-orange"></div>
+          <div class="cb-blue-grey" style="height:52px;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="stripe-r"></div>
+<div class="cb-blue-grey band"></div>
+
+<!-- ═══════════ MENU ═══════════ -->
+<section class="menu-wrap" id="menu">
+  <div class="section">
+    <span class="eyebrow reveal">La Carte</span>
+    <h2 class="sec-title reveal">Nos<br>Bestsellers.</h2>
+
+    <div class="bestseller-grid">
+
+      <!-- Hey Bro — Flagship Bestseller -->
+      <div class="bs-card reveal">
+        <div class="bs-card-accent orange"></div>
+        <div class="bs-card-body">
+          <div class="bs-badge best">Bestseller</div>
+          <div class="bs-name">Hey Bro</div>
+          <div class="bs-desc">Poulet grillé, mozzarella, sauce cheddar, Gouda, Gruyère, <span class="harissa">harissa</span>, mayo pesto, sauce Hey Bro, champignons, tomates, oignons frais &amp; sautés, roquette, pickels maison</div>
+          <div class="bs-price">20dt</div>
+        </div>
+      </div>
+
+      <!-- Frenchy -->
+      <div class="bs-card reveal reveal-delay-1">
+        <div class="bs-card-accent blue"></div>
+        <div class="bs-card-body">
+          <div class="bs-badge sig">Signature</div>
+          <div class="bs-name">Frenchy</div>
+          <div class="bs-desc">Poulet grillé, camembert, mozzarella, jambon fumé, crème Hey Bro, sauce moutarde au miel, oignons frais, tomates, pickels maison, roquette</div>
+          <div class="bs-price">18dt</div>
+        </div>
+      </div>
+
+      <!-- Smoked Raclette -->
+      <div class="bs-card reveal reveal-delay-2">
+        <div class="bs-card-accent pink"></div>
+        <div class="bs-card-body">
+          <div class="bs-badge crea">Créatif</div>
+          <div class="bs-name">Smoked Raclette</div>
+          <div class="bs-desc">Poulet grillé, poulet fumé, double raclette, pomme de terre vapeur à l'aioli, champignons, sauce Hey Bro, oignons frais &amp; sautés, roquette, pickels maison</div>
+          <div class="bs-price">22dt</div>
+        </div>
+      </div>
+
+      <!-- Crispy Chicken Tenders -->
+      <div class="bs-card reveal reveal-delay-1">
+        <div class="bs-card-accent red"></div>
+        <div class="bs-card-body">
+          <div class="bs-badge spicy">Spécial</div>
+          <div class="bs-name">Crispy Chicken Tenders</div>
+          <div class="bs-desc">Mozzarella, <span class="harissa">harissa</span>, mayo pesto, sauce Hey Bro, tomates, oignons sautés, laitue, pickels maison</div>
+          <div class="bs-price">14dt</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="menu-cta-wrap reveal">
+      <a href="brand-assets/menu.png" target="_blank" rel="noopener" class="menu-full-btn">
+        Voir le Menu Complet
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="cb-blue-grey band"></div>
+<div class="stripe-r"></div>
+
+<!-- ═══════════ TORCHI AWARDS ═══════════ -->
+<section class="awards-wrap" id="awards">
+  <div class="awards-noise"></div>
+  <div class="awards-bg-checker"></div>
+  <div class="section">
+    <div class="awards-inner">
+      <div class="awards-left">
+        <span class="eyebrow reveal">Palmarès</span>
+        <h2 class="sec-title reveal">Champion<br>Energy.</h2>
+        <p class="awards-desc reveal">
+          C'est avec notre <strong>Boombastic</strong> que Hey Bro a décroché la première place.
+          Le Makloub Créatif maison, sur Pinky Bread, spécialité de la maison.
+          Reconnu officiellement <strong>meilleur Makloub de Tunisie</strong>
+          aux Torchi Awards 2025, organisés par Boga.
+        </p>
+        <div class="awards-badge-row reveal reveal-delay-1">
+          <div class="awards-badge-num">#1</div>
+          <div>
+            <div class="awards-badge-label">Meilleur Makloub de Tunisie</div>
+            <div class="awards-badge-sub">Torchi Awards 2025 · avec le Boombastic</div>
+          </div>
+        </div>
+      </div>
+      <div class="awards-right reveal reveal-delay-2">
+        <img src="brand-assets/torchi.svg" alt="Torchi Awards 2025" class="torchi-img">
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cb-blue-grey band"></div>
+<div class="stripe-o"></div>
+
+<!-- ═══════════ LOCATION ═══════════ -->
+<section class="location-wrap" id="location">
+  <div class="section">
+    <span class="eyebrow reveal">Nous Trouver</span>
+    <h2 class="sec-title reveal">Viens à<br>la source.</h2>
+    <div class="location-grid">
+      <div class="location-cards">
+        <div class="loc-card reveal">
+          <div class="loc-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+            </svg>
+          </div>
+          <div>
+            <div class="loc-label">Adresse</div>
+            <div class="loc-value">Tunis, Tunisie</div>
+          </div>
+        </div>
+        <div class="loc-card reveal reveal-delay-1">
+          <div class="loc-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </div>
+          <div>
+            <div class="loc-label">Horaires</div>
+            <div class="loc-value">Lundi — Samedi<br>11h00 — 22h30</div>
+          </div>
+        </div>
+        <div class="loc-card reveal reveal-delay-2">
+          <div class="loc-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+            </svg>
+          </div>
+          <div>
+            <div class="loc-label">Téléphone</div>
+            <div class="loc-value">+216 20 295 000</div>
+          </div>
+        </div>
+        <div class="loc-card reveal">
+          <div class="loc-icon" style="background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+            </svg>
+          </div>
+          <div>
+            <div class="loc-label">Instagram</div>
+            <div class="loc-value">@heybro_tn</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="location-map reveal reveal-delay-1">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2423.3981958617233!2d10.162646270256433!3d36.8645527959812!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12e2cd7d12790d01%3A0xeb75ce5b6239cb7b!2sHEY%20BRO!5e1!3m2!1sfr!2stn!4v1772122406230!5m2!1sfr!2stn"
+          width="100%" height="100%"
+          style="border:0;display:block;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Hey Bro! sur Google Maps">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="stripe-o"></div>
+<div class="cb-blue-grey band"></div>
+
+<!-- ═══════════ INSTAGRAM ═══════════ -->
+<section class="instagram-wrap" id="instagram">
+  <div class="section">
+    <div class="ig-header reveal">
+      <div>
+        <span class="eyebrow">Instagram</span>
+        <h2 class="sec-title" style="margin-bottom:8px;">Notre Feed.</h2>
+        <div class="ig-handle">@heybro_tn</div>
+      </div>
+      <a href="https://www.instagram.com/heybro_tn/" target="_blank" rel="noopener" class="ig-follow-btn">Suivre sur Instagram</a>
+    </div>
+
+    <div class="ig-grid">
+
+      <!-- Post 1 — wordmark -->
+      <div class="ig-post reveal">
+        <div class="ig-post-inner">
+          <div class="ig-post-stripe-o"></div>
+          <div class="ig-post-cb cb-blue-grey" style="height:30px;"></div>
+          <div class="ig-post-content" style="flex:1;">
+            <div class="ig-post-hey">Hey</div>
+            <div class="ig-post-bro">BRO!</div>
+            <div class="ig-post-sub">Le temple du Makloub légendaire</div>
+          </div>
+          <div class="ig-post-cb cb-blue-grey" style="height:30px;"></div>
+          <div class="ig-post-stripe-r"></div>
+          <div class="ig-post-overlay"><div class="ig-post-overlay-text">Voir le post</div></div>
+        </div>
+      </div>
+
+      <!-- Post 2 — award -->
+      <div class="ig-post reveal reveal-delay-1">
+        <div class="ig-post-inner">
+          <div class="ig-post-stripe-o"></div>
+          <div class="ig-post-cb cb-blue-grey" style="height:26px;"></div>
+          <div class="ig-post-content" style="background:var(--dark);flex:1;">
+            <img src="brand-assets/torchi.png" alt="Torchi" style="width:72px;height:auto;filter:drop-shadow(0 4px 14px rgba(0,0,0,0.6));margin-bottom:6px;">
+            <div class="ig-post-label">TORCHI<br>AWARDS</div>
+            <div class="ig-post-sub">#1 Makloub · 2025</div>
+          </div>
+          <div class="ig-post-cb cb-blue-grey" style="height:26px;"></div>
+          <div class="ig-post-stripe-o"></div>
+          <div class="ig-post-overlay"><div class="ig-post-overlay-text">Voir le post</div></div>
+        </div>
+      </div>
+
+      <!-- Post 3 — Signature pink -->
+      <div class="ig-post reveal reveal-delay-2">
+        <div class="ig-post-inner">
+          <div class="ig-post-stripe-r"></div>
+          <div class="ig-post-cb cb-pink-white" style="height:26px;"></div>
+          <div class="ig-post-content pink-bg" style="flex:1;">
+            <div style="font-family:'Fredoka One',cursive;font-size:clamp(8px,1.5vw,12px);color:rgba(255,255,255,0.7);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;">Nouveau</div>
+            <div class="ig-post-label" style="-webkit-text-stroke:1px #7a0060;text-shadow:1px 1px 0 #7a0060;">Hey Bro<br>Signature</div>
+            <div class="ig-post-sub" style="color:rgba(255,255,255,0.75);margin-top:4px;">Le Makloub ultime · 20dt</div>
+          </div>
+          <div class="ig-post-cb cb-pink-white" style="height:26px;"></div>
+          <div class="ig-post-stripe-r"></div>
+          <div class="ig-post-overlay"><div class="ig-post-overlay-text">Voir le post</div></div>
+        </div>
+      </div>
+
+      <!-- Post 4 — tagline -->
+      <div class="ig-post reveal">
+        <div class="ig-post-inner">
+          <div class="ig-post-stripe-o"></div>
+          <div class="ig-post-cb cb-blue-white" style="height:26px;"></div>
+          <div class="ig-post-content dark-bg" style="flex:1;padding:14px;">
+            <div style="font-family:'Luckiest Guy',cursive;font-size:clamp(10px,2vw,16px);color:var(--pink);letter-spacing:1px;line-height:1.35;text-align:center;">"La street l'a créé,<br>Hey Bro<br>l'a stylé."</div>
+            <div style="width:28px;height:3px;background:var(--orange);border-radius:2px;margin-top:10px;"></div>
+            <div style="font-family:'Fredoka One',cursive;font-size:clamp(8px,1.2vw,10px);color:rgba(255,255,255,0.35);letter-spacing:2px;margin-top:6px;">@HEYBRO_TN</div>
+          </div>
+          <div class="ig-post-cb cb-blue-white" style="height:26px;"></div>
+          <div class="ig-post-stripe-r"></div>
+          <div class="ig-post-overlay"><div class="ig-post-overlay-text">Voir le post</div></div>
+        </div>
+      </div>
+
+      <!-- Post 5 — classique promo -->
+      <div class="ig-post reveal reveal-delay-1">
+        <div class="ig-post-inner">
+          <div class="ig-post-stripe-o"></div>
+          <div class="ig-post-cb cb-blue-grey" style="height:26px;"></div>
+          <div class="ig-post-content" style="flex:1;">
+            <div class="ig-post-label">Makloub<br>Classique</div>
+            <div class="ig-post-sub" style="margin-top:6px;">À partir de 12dt</div>
+            <div style="font-family:'Fredoka One',cursive;font-size:clamp(8px,1.3vw,11px);color:rgba(255,255,255,0.4);margin-top:6px;">Chaque jour · Tunis</div>
+          </div>
+          <div class="ig-post-cb cb-blue-grey" style="height:26px;"></div>
+          <div class="ig-post-stripe-o"></div>
+          <div class="ig-post-overlay"><div class="ig-post-overlay-text">Voir le post</div></div>
+        </div>
+      </div>
+
+      <!-- Post 6 — arabic quote -->
+      <div class="ig-post reveal reveal-delay-2">
+        <div class="ig-post-inner">
+          <div class="ig-post-stripe-r"></div>
+          <div class="ig-post-cb cb-blue-grey" style="height:26px;"></div>
+          <div class="ig-post-content" style="background:var(--blue-dark);flex:1;padding:14px;">
+            <div style="font-family:'Fredoka One',cursive;font-size:clamp(8px,1.4vw,12px);color:rgba(255,255,255,0.52);line-height:1.5;text-align:center;">"On n'a pas inventé<br>le مقلوب…<br>On lui a juste donné<br>des super-pouvoirs."</div>
+            <div style="width:28px;height:3px;background:var(--orange);border-radius:2px;margin-top:10px;"></div>
+          </div>
+          <div class="ig-post-cb cb-blue-grey" style="height:26px;"></div>
+          <div class="ig-post-stripe-r"></div>
+          <div class="ig-post-overlay"><div class="ig-post-overlay-text">Voir le post</div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ═══════════ ORDER ONLINE ═══════════ -->
+<section class="order-wrap" id="order">
+  <div class="section">
+    <div class="order-inner">
+      <img src="brand-assets/deliveryapplogo.svg" alt="Glovo" class="order-logo reveal">
+      <div class="order-text">
+        <span class="eyebrow reveal">Commander en Ligne</span>
+        <h2 class="sec-title reveal">Livré<br>chez toi.</h2>
+        <p class="reveal reveal-delay-1">Pas le temps de se déplacer ? Commande ton Hey Bro directement depuis Glovo et reçois ton Makloub légendaire à domicile.</p>
+        <a href="https://glovoapp.com/fr" target="_blank" rel="noopener" class="glovo-btn reveal reveal-delay-2">
+          <img src="brand-assets/deliveryapplogo.svg" alt="Glovo">
+          Commander sur Glovo
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="stripe-r"></div>
+<div class="cb-blue-grey band"></div>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<div class="footer-orange-bar"></div>
+<footer>
+  <div class="footer-top">
+    <div>
+      <a href="#hero" class="footer-logo">
+        <img src="brand-assets/heybrologo.svg" alt="Hey BRO!" class="footer-logo-img">
+      </a>
+      <p class="footer-tagline">"La street l'a créé,<br>Hey Bro l'a stylé."<br><br>Le temple légendaire du Makloub — Tunisie.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Navigation</div>
+      <ul class="footer-links">
+        <li><a href="#about">Notre Histoire</a></li>
+        <li><a href="#menu">Le Menu</a></li>
+        <li><a href="#awards">Palmarès</a></li>
+        <li><a href="#instagram">Instagram</a></li>
+        <li><a href="#location">Nous Trouver</a></li>
+        <li><a href="#order">Commander</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Contact</div>
+      <ul class="footer-links">
+        <li><a href="https://www.instagram.com/heybro_tn/" target="_blank" rel="noopener">@heybro_tn</a></li>
+        <li><a href="#">Tunis, Tunisie</a></li>
+        <li><a href="tel:+21620295000">+216 20 295 000</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 Hey Bro! — Tous droits réservés.</span>
+    <span class="footer-copy">#1 Torchi Awards 2025 — Meilleur Makloub de Tunisie</span>
+  </div>
+</footer>
+
+<script>
+// ─── MOBILE NAV ACTIVE STATE ─────────────────────────
+function setActiveTab(el) {
+  document.querySelectorAll('.mobile-tab').forEach(function(t) { t.classList.remove('active'); });
+  if (!el.classList.contains('cta-tab')) el.classList.add('active');
+}
+
+// ─── SCROLL REVEAL ────────────────────────────────────
+var revealObserver = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(function(el) {
+  revealObserver.observe(el);
+});
+
+// Trigger hero reveals immediately (already in viewport)
+setTimeout(function() {
+  document.querySelectorAll('.hero .reveal').forEach(function(el) {
+    el.classList.add('visible');
+  });
+}, 80);
+
+// ─── NAV SCROLL EFFECT ────────────────────────────────
+var nav = document.getElementById('nav');
+window.addEventListener('scroll', function() {
+  if (window.scrollY > 50) {
+    nav.style.background = 'rgba(7,8,15,0.97)';
+    nav.style.borderBottomColor = 'rgba(255,255,255,0.1)';
+  } else {
+    nav.style.background = 'rgba(7,8,15,0.82)';
+    nav.style.borderBottomColor = 'rgba(255,255,255,0.07)';
+  }
+}, { passive: true });
+</script>
+</body>
+</html>
